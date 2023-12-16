@@ -103,19 +103,44 @@ ul {
     color: #fff;
 }
 
-.sidebar-right input {
-    width: 50%;
+#search {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#add {
+    width: 17%;
     border: 1px solid #ccc;
     padding: 10px;
 }
 
-select {
-    padding: 10px;
-    width: 30%;
+button {
+    
+    background-color: teal;
+    color: white;
+    padding: 9px;
+    border: 2px solid gold;
+}
+
+.delete,
+.edit {
+    width: 20%;
+    gap: 20px;
+    color: white;
+    border-radius: 25px;
+    font-size: 15px;
+    padding: 5px 10px 5px 10px;
+}
+.edit {
+    background: teal;
+}
+.delete {
+    background: red;
 }
 
 table {
-    width: 100%;
+    width: 62.5%;
     border-collapse: collapse;
     margin-top: 10px;
 }
@@ -135,18 +160,3 @@ tr:nth-child(even) {
     background: #e7f2f4;
 }
 
-.delete-icon {
-    color: red;
-    cursor: pointer;
-    
-}
-
-.edit-icon {
-    color: blue;
-    cursor: pointer;
-}
-
-.delete-icon,
-.edite-icon {
-    width: 30%;
-}

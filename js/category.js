@@ -1,162 +1,107 @@
-
 const products = [
     {
-        id: 1,
-        productName: "Orange",
-        category: "Fruit",
-        quantity: 2,
-        price: 10,
+      id: 1,
+      category: "Fruit",
     },
     {
-        id: 2,
-        productName: "My boy",
-        category: "Cake",
-        quantity: 4,
-        price: 10,
+      id: 2,
+      category: "Cake",
     },
     {
-        id: 3,
-        productName: "Burger",
-        category: "Snack",
-        quantity: 3,
-        price: 10,
+      id: 3,
+      category: "Snack",
     },
     {
-        id: 4,
-        productName: "Lemon",
-        category: "Fruit",
-        quantity: 4,
-        price: 10,
+      id: 4,
+      category: "Fruit",
     },
     {
-        id: 5,
-        productName: "Chhampion Ice",
-        category: "Drink",
-        quantity: 5,
-        price: 10,
+      id: 5,
+      category: "Drink",
     },
     {
-        id: 6,
-        productName: "Coconut",
-        category: "Fruit",
-        quantity: 6,
-        price: 10,
+      id: 6,
+      category: "Fruit",
     },
     {
-        id: 7,
-        productName: "Cafe",
-        category: "Drink",
-        quantity: 7,
-        price: 10,
+      id: 7,
+      category: "Drink",
     },
-];
-
-function displayTable() {
+  ];
+  
+  function displayTable() {
     const tbody = document.querySelector(".user-list tbody");
-
+  
     for (let product of products) {
-        let tableRow = document.createElement("tr");
-
-        let tdId = document.createElement("td");
-        let tdProductName = document.createElement("td");
-        let tdCategory = document.createElement("td");
-        let tdQuantity = document.createElement("td");
-        let tdPrice = document.createElement("td");
-        let tdActions = document.createElement("td");
-
-        tdId.textContent = product.id;
-        tdProductName.textContent = product.productName;
-        tdCategory.textContent = product.category;
-        tdQuantity.textContent = product.quantity;
-        tdPrice.textContent = product.price + "$";
-
-        let deleteIcon = document.createElement("i");
-        deleteIcon.classList.add("fas", "fa-trash", "delete-icon");
-        deleteIcon.addEventListener("click", function () {
-            deleteProduct(product.id);
-        });
-
-        let editIcon = document.createElement("i");
-        editIcon.classList.add("fas", "fa-edit", "edit-icon");
-        editIcon.addEventListener("click", function () {
-            editProduct(product.id);
-        });
-
-        tdActions.appendChild(deleteIcon);
-        tdActions.appendChild(editIcon);
-
-        tableRow.appendChild(tdId);
-        tableRow.appendChild(tdProductName);
-        tableRow.appendChild(tdCategory);
-        tableRow.appendChild(tdQuantity);
-        tableRow.appendChild(tdPrice);
-        tableRow.appendChild(tdActions);
-
-        tbody.appendChild(tableRow);
+      let tableRow = document.createElement("tr");
+  
+      let tdId = document.createElement("td");
+      let tdCategory = document.createElement("td");
+      let tdActions = document.createElement("td");
+  
+      tdId.textContent = product.id;
+      tdCategory.textContent = product.category;
+  
+      let btnDelete = document.createElement('button');
+      btnDelete.classList.add('delete');
+      btnDelete.textContent = 'Delete';
+      btnDelete.addEventListener('click', () => {
+        deleteRow(tableRow, product.id);
+      });
+  
+      let btnEdit = document.createElement('button');
+      btnEdit.classList.add('edit');
+      btnEdit.textContent = 'Edit';
+  
+      tdActions.appendChild(btnEdit);
+      tdActions.appendChild(btnDelete);
+  
+      tableRow.appendChild(tdId);
+      tableRow.appendChild(tdCategory);
+      tableRow.appendChild(tdActions);
+  
+      tbody.appendChild(tableRow);
     }
-}
-
-function deleteProduct(productId) {
-    console.log("Deleting", productId);
-}
-
-function editProduct(productId) {
-    console.log("Editing", productId);
-}
-
-// function select data category ==================================
-
-function selectCategory(e) {
-
-    let selecter = e.target.value.toLowerCase();
-    let rows = document.querySelectorAll(".user-list tbody tr");
-
-    for (let row of rows) {
-        let category = row.querySelector("td:nth-child(3)").textContent.toLowerCase();
-
-        if (category === selecter) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
+  }
+  
+  function deleteRow(row, productId) {
+  
+    const index = products.findIndex(product => product.id === productId);
+    let deletNow = confirm('Are you want to delete this product?');
+    if (index !== -1 && deletNow) {
+      row.remove();
+      products.splice(index, 1);
+      localStorage.setItem('products', JSON.stringify(products));
+    }else{
+      localStorage.setItem('products', JSON.stringify(products));
     }
-}
-
-// function for clear data ===================================
-function clearFilter() {
-
-    let rows = document.querySelectorAll(".user-list tbody tr");
-
-    for (let row of rows) {
-        row.style.display = "";
-    }
-}
-
-// Create function for searching list name of product ==========================
-
-function searchProduct(e) {
+    localStorage()
+    
+  }
+  
+  function storeProducts() {
+    localStorage.setItem('products', JSON.stringify(products));
+  }
+  
+  function searchProduct(e) {
     let text = e.target.value.toLowerCase();
     let rows = document.querySelectorAll(".user-list tbody tr");
-
+  
     for (let row of rows) {
-        let productName = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
-
-        if (productName.includes(text)) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
+      let productName = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+  
+      if (productName.includes(text)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
     }
-}
-
-// ==========================================================
-
-const select = document.querySelector("#selecter");
-const search = document.querySelector("#search");
-
-select.addEventListener("change", selectCategory);
-search.addEventListener("keyup", searchProduct);
-
-// call function to display ==============================
-displayTable();
-
+  }
+  
+  const search = document.querySelector("#search");
+  const add = document.querySelector("#add");
+  search.addEventListener("keyup", searchProduct);
+  // add.addEventListener("keyup")
+  
+  displayTable();
+  storeProducts();
