@@ -162,3 +162,52 @@ function searchName(e) {
         }
     }
 }
+
+// add categories to filter--------------------------------------
+let sectIon = document.querySelector('#cat');
+console.log(sectIon);
+
+function chooseCategory(){
+    sectIon.innerHTML = '';
+    let datas = JSON.parse(localStorage.getItem('categories'));
+    for (let data of datas){
+        let option = document.createElement('option');
+        option.value = data.name;
+        option.textContent = data.name;
+        sectIon.appendChild(option);
+    }
+}
+chooseCategory();
+
+
+// add product--------------------------
+// let tbody = document.querySelector('tbody');
+function addProdcut(data){
+    // to do-----------------
+    let tr = document.createElement('tr');
+    let tdId = document.createElement('td');
+    tdId.textContent = data.id;
+    let tdName = document.createElement('td');
+    tdName.textContent = data.name;
+    let tdCategory = document.createElement('td');
+    tdCategory.textContent = data.category;
+    let tdPrice = document.createElement('td');
+    tdPrice.textContent = data.price;
+
+    tr.appendChild(tdId)
+    tr.appendChild(tdName)
+    tr.appendChild(tdCategory)
+    tr.appendChild(tdPrice)
+    tBody.appendChild(tr);
+    
+}
+
+function loopProductAdd(){
+    tbody.innerHTML = '';
+    let datas = JSON.parse(localStorage.getItem('productlist'));
+    for (let data of datas){
+        addProdcut(data);
+    }
+}
+
+loopProductAdd();
