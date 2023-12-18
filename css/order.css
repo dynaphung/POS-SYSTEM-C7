@@ -107,6 +107,7 @@ input {
 
 .myTable {
     flex: 2.5;
+    height: 20px;
     margin-left: 10px;
     border-collapse: collapse;
 }
@@ -142,4 +143,9 @@ section {
 #total {
     border: 2px solid teal;
     background-color: yellow;
+}
+.myTable tr td:nth-child(5) {
+    text-align: center;
+    color: white;
+    background-color: purple;
 }

@@ -167,5 +167,3 @@ showCategories();
 // localStorage.clear()
 
 
-// document.querySelector("header").textContent = "Edit The Question";
-// document.querySelector("menu").lastElementChild.textContent="EDIT";

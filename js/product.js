@@ -10,8 +10,8 @@ function onCancel() {
 }
 
 //To make it can add new product 
-const tbody = document.querySelector('tbody');
-tbody.remove();
+// const tbody = document.querySelector('tbody');
+// tbody.remove();
 let tBody = document.createElement('tbody');
 
 let productlist = [
@@ -23,6 +23,7 @@ let productlist = [
 function saveStorage() {
     localStorage.setItem("productlist", JSON.stringify(productlist));
 }
+// saveStorage();
 
 function getStorage() {
     if (JSON.parse(localStorage.getItem("productlist")) != null) {
@@ -162,3 +163,5 @@ function searchName(e) {
         }
     }
 }
+
+
