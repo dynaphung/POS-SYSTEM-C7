@@ -198,7 +198,7 @@ function addProdcut(data){
     tr.appendChild(tdName)
     tr.appendChild(tdCategory)
     tr.appendChild(tdPrice)
-    tBody.appendChild(tr);
+    tbody.appendChild(tr);
     
 }
 
