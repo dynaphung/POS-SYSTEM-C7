@@ -2,87 +2,127 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pos System</title>
-  <link rel="stylesheet" href="css/main.css">
-  <script src="js/main.js" defer></script>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-..." crossorigin="anonymous" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>category</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/category.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="../js/category.js" defer></script>
 </head>
 
 <body>
-  <nav>
-    <span class="material-symbols-outlined">
-      shopping_cart
-    </span>
-    <h3>POS SYSTEM</h3>
-  </nav>
-  <aside>
-    <div class="sidebar-left">
-      <div class="content-1">
-        <span class="material-symbols-outlined">
-          home
-        </span>
-        <p>Home</p>
-      </div>
-      <div class="content-1">
-        <span class="material-symbols-outlined">
-          local_convenience_store
-        </span>
-        <p>Products</p>
-      </div>
-      <div class="content-1">
-        <span class="material-symbols-outlined">
-          receipt_long
-        </span>
-        <p>History</p>
-      </div>
-      <div class="content-1">
-        <span class="material-symbols-outlined">
-          category
-        </span>
-        <p>Category</p>
-      </div>
-      <div class="content-1">
-        <span class="material-symbols-outlined">
-          order_approve
-        </span>
-        <p>order</p>
-      </div>
-    </div>
-    <div class="sidebar-right">
-      <div class="header">
-        <input type="text" placeholder="Search by name" id="search">
-        <select name="" id="selecter">
-          <option value="" selected disabled>Choose category</option>
-          <option value="fruit">Fruit</option>
-          <option value="drink">Drink</option>
-          <option value="cake">Cake</option>
-          <option value="snack">Snack</option>
-        </select>
-      </div>
-      <div class="user-list">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Product Name</th>
-              <th>Category</th>
-              <th>Quanlity</th>
-              <th>Price</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- table data -->
-          </tbody>
-        </table>
-      </div>
-  </aside>
+    <!-- <div class="container"> -->
+    <!-- <div class="show_document"> -->
+    <!-- <div class="side-bar-left">
+                <img src="../../images/logo.png" class="image_logo" width="55px" alt="logo">
+                <ul id="menu">
+                    <li><i class="fa fa-shopping-basket" style="font-size:15px;color:rgb(216, 130, 145);"></i><a
+                            href="../dashborad/dashbord.html">Dashborad</a></li>
+                    <li><i class="fa fa-shopping-cart" style="font-size:15px;color:rgb(216, 130, 145);"></i><a
+                            href="../product/product.html">Products</a></li>
+                    <li><i class="fa fa-th" style="font-size:15px;color:rgb(216, 130, 145);"></i><a
+                            href="#">Category</a></li>
+                    <li><i class="	fa fa-cart-arrow-down" style="font-size:15px;color:rgb(216, 130, 145);"></i><a
+                            href="../../index.html">Order</a></li>
+                </ul>
+            </div> -->
+    <!-- <div class="side-bar-bashright">
+                <div class="header"> -->
+    <!-- <h2 class="head2">POS SYSTEM</h2>
+                    <div class="header-dash">
+                        <i class="fa fa-sign-out" id="iconlogout" style="font-size:20px;color:black;"></i>
+                        <i class="	fa fa-cart-arrow-down" id="iconcard" style="font-size:20px;color:black;"></i>
+                    </div> -->
+    <!-- </div> -->
+    <header>
+        <a href="../index.html"><img src="../images/dashboard-image/shopping.jpg" width="50"></a>
+        <h3>POS SYSTEM</h3>
+    </header>
+    <section>
+        <div class="section-left">
+            <div class="content-1">
+                <span class="material-symbols-outlined">home</span>
+                <a href="../index.html">Home</a>
+            </div>
+            <div class="content-1">
+                <span class="material-symbols-outlined">local_convenience_store</span>
+                <a href="#">Products</a>
+            </div>
+            <div class="content-1">
+                <span class="material-symbols-outlined">receipt_long</span>
+                <a href="history.html">History</a>
+            </div>
+            <div class="content-1">
+                <span class="material-symbols-outlined">category</span>
+                <a href="category.html">Category</a>
+            </div>
+            <div class="content-1">
+                <span class="material-symbols-outlined">order_approve</span>
+                <a href="order.html">Order</a>
+            </div>
+        </div>
+        <div class="show-category">
+            <div class="show-category1">
+                <div class="header-show">
+                    <h2>List of category</h3>
+                </div>
+                <div class="search-button">
+                    <input id="search" type="search" placeholder="Search category name">
+                </div>
+            </div>
+            <hr>
+            <div class="add-category">
+                <button class="add-btn"><i class="ri-add-circle-fill"></i><b>New Category</b></button>
+            </div>
+            <div class="container-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="category-form hide">
+            <div class="show-category1">
+                <div class="header-show">
+                    <h2>Create Category</h2>
+                </div>
+                <button class="button-view">
+                    View
+                </button>
+            </div>
+            <hr>
+            <div class="form">
+                <form action="">
+                    <div class="name">
+                        <label for="name">Name</label>
+                        <input type="text" id="name">
+                    </div>
+                    <div class="name">
+                        <label for="name">Description</label>
+                        <input type="text" id="description">
+                    </div>
+                    <button id="save">Save</button>
+                    <button id="update">Update</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+    </section>
+        
 </body>
 
 </html>
