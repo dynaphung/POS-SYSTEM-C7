@@ -20,10 +20,17 @@ let categories = [
     { id: 3, name: "Fruit", description: "test" },
 ];
 
+let dataOfProdtuct = [
+    {id: 1, name: 'Orange', categories: 'Fruit', price: 10},
+    {id: 2, name: 'Orange', categories: 'Fruit', price: 10},
+    {id: 3, name: 'Orange', categories: 'Fruit', price: 10}
+];
+
 function saveStorage() {
     localStorage.setItem("categories", JSON.stringify(categories));
+    localStorage.setItem('product', JSON.stringify(dataOfProdtuct));
 }
-
+// saveStorage();
 function getStorage() {
     if (JSON.parse(localStorage.getItem("categories")) != null) {
         categories = JSON.parse(localStorage.getItem("categories"));
