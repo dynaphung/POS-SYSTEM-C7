@@ -19,6 +19,7 @@ function displayTable() {
         let tableRow = document.createElement("tr");
 
         // call the table td that have data =================
+        let customerName = document.createElement("td");
         let tdName = document.createElement("td");
         let tdCategory = document.createElement("td");
         let tdPrice = document.createElement("td");
@@ -26,6 +27,7 @@ function displayTable() {
         let tdTotal = document.createElement("td");
 
         // textContent all data =======================
+        customerName.textContent = product.customer;
         tdName.textContent = product.name;
         tdCategory.textContent = product.category;
         tdPrice.textContent = product.price + "$";
@@ -33,6 +35,7 @@ function displayTable() {
         tdTotal.textContent = product.price * product.quantity + "$";
 
         // apppend all data such as Idname, tdCategory, tdPrice, tdQty, total to tableRow
+        tableRow.appendChild(customerName);
         tableRow.appendChild(tdName);
         tableRow.appendChild(tdCategory);
         tableRow.appendChild(tdPrice);
@@ -56,25 +59,34 @@ function buyProduct(event) {
     event.preventDefault();
 
     // call all input that input product =====================
+    const customserInput = document.getElementById("enter-custom");
     const nameInput = document.getElementById("enter-name");
     const categoryInput = document.getElementById("enter-category");
     const priceInput = document.getElementById("enter-price");
     const quantityInput = document.getElementById("enter-quantity");
 
     // varible set data of product ===================
+    const customer = customserInput.value;
     const name = nameInput.value;
     const category = categoryInput.value;
     const price = parseFloat(priceInput.value);
     const quantity = parseInt(quantityInput.value);
 
     // Check if any input field is empty is display new data in table ==============
-    if (name === "" || category === "" || price === 0 || quantity === 0) {
+    if (customer === "" || name === "" || category === "" || price === 0 || quantity === 0) {
         alert("Please enter information of product");
+        return;
+    }
+
+    const ourListproduct = ["fruit", "drink", "snack", "cake"];
+    if (!ourListproduct.includes(category)) {
+        alert("We don't have this product");
         return;
     }
 
     // varible new product input =================
     const product = {
+        customer: customer,
         name: name,
         category: category,
         price: price,
@@ -87,6 +99,7 @@ function buyProduct(event) {
     saveProduct();
 
     // clear the value before input new data =================
+    customserInput.value = "";
     nameInput.value = "";
     categoryInput.value = "";
     priceInput.value = "";
@@ -113,3 +126,6 @@ const buyNow = document.getElementById("buy-product");
 buyNow.addEventListener("click", buyProduct);
 // call loadProdoct for get data from input ===============
 loadProduct();
+
+
+
