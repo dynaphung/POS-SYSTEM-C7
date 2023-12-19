@@ -75,49 +75,72 @@ function searchName(e) {
 
 // add categories to filter--------------------------------------
 let sectIon = document.querySelector('#cat');
-console.log(sectIon);
 
-function chooseCategory(){
+function chooseCategory() {
     sectIon.innerHTML = '';
     let datas = JSON.parse(localStorage.getItem('categories'));
-    for (let data of datas){
+    for (let data of datas) {
         let option = document.createElement('option');
         option.value = data.name;
         option.textContent = data.name;
         sectIon.appendChild(option);
     }
 }
-chooseCategory();
+// chooseCategory();
+
+
+
+//btn add product
+let btnaddProduct = document.getElementById("addProduct");
+btnaddProduct.addEventListener("click", addProdcut);
+
 
 
 // add product--------------------------
-// let tbody = document.querySelector('tbody');
-function addProdcut(data){
+let tbody = document.querySelector('tbody');
+function addProdcut(data) {
     // to do-----------------
     let tr = document.createElement('tr');
+
     let tdId = document.createElement('td');
     tdId.textContent = data.id;
+
     let tdName = document.createElement('td');
     tdName.textContent = data.name;
+
     let tdCategory = document.createElement('td');
+    // let inputCate = document.createElement('input');
+    // inputCate.type = 'number';
+    // inputCate.id = 'quantity';
+    // inputCate.name = 'quantity';
+    // inputCate.required = true;
+    // tdCategory.appendChild(inputCate);
     tdCategory.textContent = data.category;
+    // console.log(tdCategory);
+
     let tdPrice = document.createElement('td');
     tdPrice.textContent = data.price;
+
+    
+
 
     tr.appendChild(tdId)
     tr.appendChild(tdName)
     tr.appendChild(tdCategory)
     tr.appendChild(tdPrice)
     tbody.appendChild(tr);
-    
+
 }
 
-function loopProductAdd(){
+
+function loopProductAdd() {
     tbody.innerHTML = '';
     let datas = JSON.parse(localStorage.getItem('productlist'));
-    for (let data of datas){
+    for (let data of datas) {
         addProdcut(data);
     }
 }
 
 loopProductAdd();
+
+
