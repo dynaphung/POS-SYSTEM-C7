@@ -115,16 +115,24 @@ input {
 .myTable th,
 .myTable td {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid grey;
 }
 
 .myTable th {
-    border: 2px solid black;
+    border: 2px solid lawngreen;
     background-color: teal;
 }
 
 .myTable tr td {
     height: 20px;
+
+}
+.myTable tr td:nth-child(5) {
+    text-align: center;
+    background-color: purple;
+    height: 20px;
+    color: white;
+
 }
 
 #enter-name #enter-categories {
@@ -136,16 +144,15 @@ input {
     margin: 10px;
 }
 
-section {
+.myTotal {
     margin-top: 6px;
 }
 
-#total {
-    border: 2px solid teal;
-    background-color: yellow;
+.myTotal h2 {
+    color: blue;
 }
-.myTable tr td:nth-child(5) {
-    text-align: center;
-    color: white;
-    background-color: purple;
+
+.my-price {
+    border: 2px solid tomato;
+    background-color: gold;
 }
