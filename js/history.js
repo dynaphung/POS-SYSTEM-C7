@@ -10,16 +10,18 @@ const tableBody = document.getElementById("tableHistory");
 for (let product of products) {
 
     // Create a new table row =================
-    const tRow = document.createElement("tr");
+    let tRow = document.createElement("tr");
 
     // Create table td =================
-    const tdName = document.createElement("td");
-    const tdCategory = document.createElement("td");
-    const tdPrice = document.createElement("td");
-    const tdQuantity = document.createElement("td");
-    const tdTotal = document.createElement("td");
+    let tdCustomer = document.createElement("td");
+    let tdName = document.createElement("td");
+    let tdCategory = document.createElement("td");
+    let tdPrice = document.createElement("td");
+    let tdQuantity = document.createElement("td");
+    let tdTotal = document.createElement("td");
 
     // add textContent to the table row =================
+    tdCustomer.textContent = product.customer
     tdName.textContent = product.name;
     tdCategory.textContent = product.category;
     tdPrice.textContent = product.price + "$";
@@ -27,6 +29,7 @@ for (let product of products) {
     tdTotal.textContent = parseInt(product.price) * parseInt(product.quantity) + "$";
 
     // Append all data such as name, category, price to tRow =====================
+    tRow.appendChild(tdCustomer)
     tRow.appendChild(tdName);
     tRow.appendChild(tdCategory);
     tRow.appendChild(tdPrice);
