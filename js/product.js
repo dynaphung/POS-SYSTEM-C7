@@ -1,6 +1,14 @@
 
-//To display block on form add product
-function addNewPro() {
+let formAddPro = document.getElementById('productForm');
+
+let btnCreatePro = document.querySelector("#new_product");
+btnCreatePro.addEventListener("click", addNewProduct)
+
+let productForm = document.getElementById("cancel");
+productForm.addEventListener("click", onCancel)
+
+// //To display block on form add product
+function addNewProduct() {
     formAddPro.style.display = "block";
 }
 
@@ -9,45 +17,22 @@ function onCancel() {
     formAddPro.style.display = "none";
 }
 
-//To make it can add new product 
-// const tbody = document.querySelector('tbody');
-// tbody.remove();
-// let tBody = document.createElement('tbody');
 
-let productlist = [
-    { id: 1, name: "Milk Tea", category: "drink", quantity: "2", price: "2", description: "test" },
-    { id: 2, name: "Fry egg", category: "drink", quantity: "2", price: "2", description: "test" },
-    { id: 3, name: "Apple", category: "drink", quantity: "2", price: "2", description: "test" },
-];
+//clear filter, search, filter category
+const select = document.querySelector('#cat');
+const rows = document.querySelectorAll('tbody tr');
+const btn = document.querySelector('#clearfilter');
+const search = document.querySelector('#search');
 
-function saveStorage() {
-    localStorage.setItem("productlist", JSON.stringify(productlist));
-}
-// saveStorage();
+select.addEventListener('change', filterData);
+btn.addEventListener('click', clearFilter);
+search.addEventListener('input', searchName);
 
-function getStorage() {
-    if (JSON.parse(localStorage.getItem("productlist")) != null) {
-        productlist = JSON.parse(localStorage.getItem("productlist"));
-    }
-}
-
-
-let formAddPro = document.getElementById('productForm');
-
-let productForm = document.getElementById("cancel");
-productForm.addEventListener("click", onCancel)
-
-let btnCreatePro = document.querySelector("#new_product");
-btnCreatePro.addEventListener("click", addNewPro)
-
-
-
-//Product Page
 function filterData(e) {
-    let cat = e.target.value;
+    const cat = e.target.value;
     for (let tr of rows) {
-        let category = tr.lastElementChild.previousElementSibling.textContent;
-        if (category === cat) {
+        const category = tr.children[2].textContent;
+        if (cat === '' || category === cat) {
             tr.style.display = '';
         } else {
             tr.style.display = 'none';
@@ -59,13 +44,14 @@ function clearFilter() {
     for (let tr of rows) {
         tr.style.display = '';
     }
+    select.selectedIndex = 0;
 }
 
-function searchName(e) {
-    let text = e.target.value;
+function searchName() {
+    const searchText = search.value.toLowerCase();
     for (let tr of rows) {
-        let proName = tr.firstElementChild.nextElementSibling.textContent;
-        if (proName.indexOf(text) !== -1) {
+        const productName = tr.children[1].textContent.toLowerCase();
+        if (productName.includes(searchText)) {
             tr.style.display = '';
         } else {
             tr.style.display = 'none';
@@ -73,7 +59,8 @@ function searchName(e) {
     }
 }
 
-// add categories to filter--------------------------------------
+
+// // add categories to filter--------------------------------------
 let sectIon = document.querySelector('#cat');
 
 function chooseCategory() {
@@ -86,13 +73,9 @@ function chooseCategory() {
         sectIon.appendChild(option);
     }
 }
-// chooseCategory();
+chooseCategory();
 
 
-
-//btn add product
-let btnaddProduct = document.getElementById("addProduct");
-btnaddProduct.addEventListener("click", addProdcut);
 
 
 
@@ -109,38 +92,85 @@ function addProdcut(data) {
     tdName.textContent = data.name;
 
     let tdCategory = document.createElement('td');
-    // let inputCate = document.createElement('input');
-    // inputCate.type = 'number';
-    // inputCate.id = 'quantity';
-    // inputCate.name = 'quantity';
-    // inputCate.required = true;
-    // tdCategory.appendChild(inputCate);
-    tdCategory.textContent = data.category;
-    // console.log(tdCategory);
+    tdCategory.textContent = data.categories;
+    let tdQty = document.createElement('td');
+    let inputQty = document.createElement('input');
+    inputQty.type = 'number';
+    inputQty.id = 'quantity';
+    inputQty.name = 'quantity';
+    inputQty.required = true;
+    tdQty.appendChild(inputQty);
 
     let tdPrice = document.createElement('td');
-    tdPrice.textContent = data.price;
+    tdPrice.textContent = data.price + '$';
 
-    
+    let tdAction = document.createElement('td');
+    let i = document.createElement('i');
+    i.setAttribute('class', 'material-symbols-outlined');
+    i.textContent = 'visibility';
+    let i1 = document.createElement('i');
+    i1.setAttribute('class', 'material-symbols-outlined');
+    i1.textContent = 'edit';
+    let i2 = document.createElement('i');
+    i2.setAttribute('class', 'material-symbols-outlined');
+    i2.textContent = 'delete';
+    tdAction.appendChild(i);
+    tdAction.appendChild(i1);
+    tdAction.appendChild(i2);
 
 
-    tr.appendChild(tdId)
-    tr.appendChild(tdName)
-    tr.appendChild(tdCategory)
-    tr.appendChild(tdPrice)
+    tr.appendChild(tdId);
+    tr.appendChild(tdName);
+    tr.appendChild(tdCategory);
+    tr.appendChild(tdQty);
+    tr.appendChild(tdPrice);
+    tr.appendChild(tdAction);
     tbody.appendChild(tr);
 
 }
 
 
 function loopProductAdd() {
-    tbody.innerHTML = '';
-    let datas = JSON.parse(localStorage.getItem('productlist'));
+    // tbody.innerHTML = '';
+    let datas = JSON.parse(localStorage.getItem('product'));
     for (let data of datas) {
         addProdcut(data);
     }
 }
-
 loopProductAdd();
 
+function getValueFromInputProduct(){
+    let allinput = document.querySelectorAll('.form-group');
+    let data = JSON.parse(localStorage.getItem('product'));
+    let obj = {};
+    obj.id = allinput[2].children[1].value;
+    obj.name = allinput[0].children[1].value;
+    obj.categories = allinput[1].children[1].value;
+    obj.price = allinput[3].children[1].value;
+    data.push(obj);
+    localStorage.setItem('product', JSON.stringify(data));
+    // chooseCategory();
+    window.location.reload();
+    // console.log(data)
 
+}
+
+
+let searchP = document.querySelector('#search');
+console.log(searchP);
+function searchProduct(){
+
+    let data = document.querySelectorAll('tr');
+    for (let value of data){
+        if (value.children[1].textContent != 'Product Name'){
+            if (value.children[1].textContent.toLocaleLowerCase().includes(searchP.value.toLocaleLowerCase())){
+                value.style.display = '';
+            }else{
+                value.style.display = 'none'
+            }
+        }
+        
+    }
+}
+
+searchP.addEventListener('keyup',  searchProduct);

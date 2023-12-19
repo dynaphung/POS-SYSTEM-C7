@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <script src="../js/product.js" defer></script>
     <header>
         <a href="../index.html"><img src="../images/dashboard-image/shopping.jpg" width="50"></a>
         <h3>POS SYSTEM</h3>
@@ -40,7 +39,7 @@
                 <a href="order.html">Order</a>
             </div>
         </div>
-        <div class="container">
+        <!-- <div class="container">
             <div class="con-header">
                 <button id="new_product">
                     <i class="material-symbols-outlined">add_circle</i>
@@ -69,7 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr>
+                    <tr>
                         <td>1</td>
                         <td>banana</td>
                         <td>fruit</td>
@@ -83,7 +82,67 @@
                             <i class="material-symbols-outlined">edit</i>
                             <i class="material-symbols-outlined">delete</i>
                         </td>
-                    </tr> -->
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>jo</td>
+                        <td>fruit</td>
+                        <td>
+                            <input type="number" id="quantity" name="quantity" required>
+                        </td>
+                        <td>10$</td>
+                        <td>
+                            <i class="material-symbols-outlined">visibility</i>
+                            <i class="material-symbols-outlined">add_shopping_cart</i>
+                            <i class="material-symbols-outlined">edit</i>
+                            <i class="material-symbols-outlined">delete</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>sc</td>
+                        <td>fruit</td>
+                        <td>
+                            <input type="number" id="quantity" name="quantity" required>
+                        </td>
+                        <td>10$</td>
+                        <td>
+                            <i class="material-symbols-outlined">visibility</i>
+                            <i class="material-symbols-outlined">add_shopping_cart</i>
+                            <i class="material-symbols-outlined">edit</i>
+                            <i class="material-symbols-outlined">delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+        <div class="container">
+            <button id="new_product">
+                <i class="material-symbols-outlined">add_circle</i>
+                <p>Add New Product</p>
+            </button>
+            <div class="header">
+                <input type="text" placeholder="Search product by name..." id="search">
+                <select name="" id="cat">
+                    <option value="" selected disabled>Choose category</option>
+                    <option value="fruit">Fruit</option>
+                    <option value="food">Food</option>
+                    <option value="drink">Drink</option>
+                </select>
+                <button id="clearfilter">Clear Filter</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
                 </tbody>
             </table>
         </div>
@@ -110,9 +169,10 @@
                 <textarea id="description" name="description" required></textarea>
             </div>
             <div id="btn">
-                <button type="submit" id="addProduct">Add Product</button>
+                <button type="submit" id="addProduct" onclick="getValueFromInputProduct()">Add Product</button>
                 <button type="submit" id="cancel">Cancel</button>
             </div>
         </dialog>
+    <script src="..//js/product.js"></script>
 </body>
 </html>
