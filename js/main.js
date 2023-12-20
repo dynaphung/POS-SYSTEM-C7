@@ -1,25 +1,4 @@
 
-// let dashBoardPrice = document.querySelectorAll('.displayform h1');
-
-// function displayDashBoard (){
-//     let dataDash = JSON.parse(localStorage.getItem('totalDash'));
-//     let dataPay = JSON.parse(localStorage.getItem('data'));
-//     let totalStock = 0;
-//     let catagory = 0;
-//     dashBoardPrice[2].textContent = dataDash.price + '$';
-//     dashBoardPrice[1].textContent = dataDash.itemSold;
-//     for (let datas of dataPay){
-//         catagory += 1;
-//         for (let data of datas.product){
-//             totalStock += data.stock;
-//         }
-//     }
-//     dashBoardPrice[3].textContent = totalStock;
-//     dashBoardPrice[0].textContent = catagory;
-// }
-
-// displayDashBoard();
-
 // Get data from local storage
 const savedProducts = localStorage.getItem("products");
 const products = savedProducts ? JSON.parse(savedProducts) : [];
@@ -32,12 +11,12 @@ const productSold = products.length;
 const category = categories.length;
 
 // Get the table body by id
-const tableBody = document.getElementById("tableHistory");
+const tableHistore = document.getElementById("tableHistory");
 let incomeTotal = 0;
 
 // Loop for creating new products and displaying data in the table
 for (let product of products) {
-    let tRow = document.createElement("tr");
+    let rowTable = document.createElement("tr");
     let tdName = document.createElement("td");
     let tdCategory = document.createElement("td");
     let tdPrice = document.createElement("td");
@@ -50,13 +29,13 @@ for (let product of products) {
     tdQuantity.textContent = product.quantity;
     tdTotal.textContent = parseInt(product.price) * parseInt(product.quantity) + "$";
 
-    tRow.appendChild(tdName);
-    tRow.appendChild(tdCategory);
-    tRow.appendChild(tdPrice);
-    tRow.appendChild(tdQuantity);
-    tRow.appendChild(tdTotal);
+    rowTable.appendChild(tdName);
+    rowTable.appendChild(tdCategory);
+    rowTable.appendChild(tdPrice);
+    rowTable.appendChild(tdQuantity);
+    rowTable.appendChild(tdTotal);
 
-    tableBody.appendChild(tRow);
+    tableHistore.appendChild(rowTable);
 
     incomeTotal += parseInt(product.price) * parseInt(product.quantity);
 }
@@ -130,15 +109,9 @@ function loopCreat() {
 let lowBtn = document.querySelector('.btn');
 lowBtn.addEventListener('click', loopCreat);
 
-
-
 // -------------best selling--------------
 
 let hightBtn = document.querySelector('.btn');
 hightBtn.addEventListener('click', () => {
     document.querySelector('tbody').innerHTML = '';
 });
-
-
-
-
