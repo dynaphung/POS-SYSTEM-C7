@@ -15,15 +15,15 @@ const updateButton = document.querySelector('#update');
 const table = document.querySelector('table');
 
 let categories = [
-    { id: 1, name: "Drink", description: "test" },
-    { id: 2, name: "Cake", description: "test" },
-    { id: 3, name: "Fruit", description: "test" },
+    // { id: 1, name: "Drink", description: "test" },
+    // { id: 2, name: "Cake", description: "test" },
+    // { id: 3, name: "Fruit", description: "test" },
 ];
 
 let dataOfProdtuct = [
-    {id: 1, name: 'Orange', categories: 'Fruit', price: 10},
-    {id: 2, name: 'Orange', categories: 'Fruit', price: 10},
-    {id: 3, name: 'Orange', categories: 'Fruit', price: 10}
+    // {id: 1, name: 'Sting', categories: 'Drink', price: 10},
+    // {id: 2, name: 'Orange', categories: 'Fruit', price: 10},
+    // {id: 3, name: 'Fry egg', categories: 'Food', price: 10}
 ];
 
 function saveStorage() {
@@ -132,6 +132,8 @@ function update(e) {
     }
 
 }
+
+
 function editCategory(e) {
     const index = e.target.parentElement.parentElement.dataset.index;
     localStorage.setItem("index", index);
@@ -157,9 +159,8 @@ function addCategory(e) {
         getStorage();
         showCategories();
     }
-    
-
 }
+
 
 // Add EventListener
 saveButton.addEventListener('click', addCategory)

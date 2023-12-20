@@ -7,6 +7,7 @@ btnCreatePro.addEventListener("click", addNewProduct)
 let productForm = document.getElementById("cancel");
 productForm.addEventListener("click", onCancel)
 
+let editor = null;
 // //To display block on form add product
 function addNewProduct() {
     formAddPro.style.display = "block";
@@ -76,78 +77,115 @@ function chooseCategory() {
 chooseCategory();
 
 
-
-
-
+//data storage_______________
+let datas = JSON.parse(localStorage.getItem('product'));
 // add product--------------------------
-let tbody = document.querySelector('tbody');
-function addProdcut(data) {
+
+let table = document.querySelector('table');
+
+
+function addProdcut() {
     // to do-----------------
-    let tr = document.createElement('tr');
-
-    let tdId = document.createElement('td');
-    tdId.textContent = data.id;
-
-    let tdName = document.createElement('td');
-    tdName.textContent = data.name;
-
-    let tdCategory = document.createElement('td');
-    tdCategory.textContent = data.categories;
-    let tdQty = document.createElement('td');
-    let inputQty = document.createElement('input');
-    inputQty.type = 'number';
-    inputQty.id = 'quantity';
-    inputQty.name = 'quantity';
-    inputQty.required = true;
-    tdQty.appendChild(inputQty);
-
-    let tdPrice = document.createElement('td');
-    tdPrice.textContent = data.price + '$';
-
-    let tdAction = document.createElement('td');
-    let i = document.createElement('i');
-    i.setAttribute('class', 'material-symbols-outlined');
-    i.textContent = 'visibility';
-    let i1 = document.createElement('i');
-    i1.setAttribute('class', 'material-symbols-outlined');
-    i1.textContent = 'edit';
-    let i2 = document.createElement('i');
-    i2.setAttribute('class', 'material-symbols-outlined');
-    i2.textContent = 'delete';
-    tdAction.appendChild(i);
-    tdAction.appendChild(i1);
-    tdAction.appendChild(i2);
-
-
-    tr.appendChild(tdId);
-    tr.appendChild(tdName);
-    tr.appendChild(tdCategory);
-    tr.appendChild(tdQty);
-    tr.appendChild(tdPrice);
-    tr.appendChild(tdAction);
-    tbody.appendChild(tr);
-
-}
-
-
-function loopProductAdd() {
-    // tbody.innerHTML = '';
     let datas = JSON.parse(localStorage.getItem('product'));
-    for (let data of datas) {
-        addProdcut(data);
-    }
-}
-loopProductAdd();
+    document.querySelector('tbody').remove();
 
-function getValueFromInputProduct(){
+    let newTbody = document.createElement('tbody');
+
+    for (let index in datas) {
+        let tr = document.createElement('tr');
+        tr.dataset.index = index;
+
+        let tdId = document.createElement('td');
+        tdId.textContent = parseInt(index)+1;
+
+        let tdName = document.createElement('td');
+        tdName.textContent = datas[index].name;
+
+        let tdCategory = document.createElement('td');
+        tdCategory.textContent = datas[index].categories;
+        let tdQty = document.createElement('td');
+        tdQty.textContent = datas[index].id
+        
+
+        let tdPrice = document.createElement('td');
+        tdPrice.textContent = datas[index].price + '$';
+
+        let tdAction = document.createElement('td');
+
+        let i1 = document.createElement('i');
+        i1.setAttribute('class', 'material-symbols-outlined');
+        i1.textContent = 'edit';
+        i1.addEventListener('click', onedit)
+
+        let i2 = document.createElement('i');
+        i2.setAttribute('class', 'material-symbols-outlined');
+        i2.textContent = 'delete';
+        i2.addEventListener('click', ondelete)
+
+        tdAction.appendChild(i1);
+        tdAction.appendChild(i2);
+
+
+        tr.appendChild(tdId);
+        tr.appendChild(tdName);
+        tr.appendChild(tdCategory);
+        tr.appendChild(tdQty);
+        tr.appendChild(tdPrice);
+        tr.appendChild(tdAction);
+        newTbody.appendChild(tr);
+
+    }
+    table.appendChild(newTbody)
+
+}
+
+addProdcut()
+//delete
+
+function ondelete(e) {
+    let index = e.target.closest('tr').dataset.index;
+    if (confirm('Are you sure you want to delete this product?')){
+        datas.splice(index, 1)
+    }
+
+    localStorage.setItem('product', JSON.stringify(datas));
+    addProdcut()
+
+}
+
+function onedit(e){
+    let data = JSON.parse(localStorage.getItem('product'));
+
+    let index = e.target.closest('tr').dataset.index;
+
+    let allinput = document.querySelectorAll('.form-group');
+
+    allinput[2].children[1].value = data[index].id
+    allinput[0].children[1].value= data[index].name
+    allinput[1].children[1].value= data[index].categories
+    allinput[3].children[1].value= data[index].price
+    formAddPro.style.display = 'block'
+
+    editor = index
+
+}
+function getValueFromInputProduct() {
     let allinput = document.querySelectorAll('.form-group');
     let data = JSON.parse(localStorage.getItem('product'));
-    let obj = {};
-    obj.id = allinput[2].children[1].value;
-    obj.name = allinput[0].children[1].value;
-    obj.categories = allinput[1].children[1].value;
-    obj.price = allinput[3].children[1].value;
-    data.push(obj);
+    let obj = {
+        id:allinput[2].children[1].value,
+        name:allinput[0].children[1].value,
+        categories: allinput[1].children[1].value,
+        price :allinput[3].children[1].value,
+
+    };
+
+    if (editor === null){
+        data.push(obj);
+    }else{
+        data[editor] = obj
+    }
+
     localStorage.setItem('product', JSON.stringify(data));
     // chooseCategory();
     window.location.reload();
@@ -158,19 +196,19 @@ function getValueFromInputProduct(){
 
 let searchP = document.querySelector('#search');
 console.log(searchP);
-function searchProduct(){
+function searchProduct() {
 
     let data = document.querySelectorAll('tr');
-    for (let value of data){
-        if (value.children[1].textContent != 'Product Name'){
-            if (value.children[1].textContent.toLocaleLowerCase().includes(searchP.value.toLocaleLowerCase())){
+    for (let value of data) {
+        if (value.children[1].textContent != 'Product Name') {
+            if (value.children[1].textContent.toLocaleLowerCase().includes(searchP.value.toLocaleLowerCase())) {
                 value.style.display = '';
-            }else{
+            } else {
                 value.style.display = 'none'
             }
         }
-        
+
     }
 }
 
-searchP.addEventListener('keyup',  searchProduct);
+searchP.addEventListener('keyup', searchProduct);
