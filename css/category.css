@@ -182,3 +182,9 @@ form button{
 .hide{
     display: none;
 }
+.ri-delete-bin-6-line{
+    background-color: red;
+}
+.ri-pencil-fill{
+    background-color: rgb(35, 148, 22);
+}
