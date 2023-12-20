@@ -115,11 +115,10 @@ input {
 .myTable th,
 .myTable td {
     padding: 10px;
-    border: 2px solid grey;
+    border: 1px solid black;
 }
 
 .myTable th {
-    border: 2px solid lawngreen;
     background-color: teal;
 }
 
@@ -130,10 +129,7 @@ input {
 
 .myTable tr td:nth-child(5) {
     text-align: center;
-    background-color: purple;
     height: 20px;
-    color: white;
-
 }
 
 #enter-name #enter-categories {
@@ -149,12 +145,7 @@ input {
     margin-top: 6px;
 }
 
-.myTotal h2 {
-    color: blue;
-}
-
 .my-price {
     width: 60%;
-    border: 2px solid tomato;
-    background-color: gold;
+    border: 2px solid teal;
 }
