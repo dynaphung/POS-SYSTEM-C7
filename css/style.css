@@ -62,32 +62,12 @@ section {
     width: 100%;
     background-color: white;
 }
-.list-lists{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 .lists{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-top: 20px;
-}
-
-/* style on button  */
-.buttons{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-.buttons p{
-    width: 20%;
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
-    background-color: rgb(36, 131, 162);
-    color: white;
 }
 
 
@@ -102,13 +82,108 @@ td {
     border: 1px solid black;
     padding: 8px;
 }
-.title{
-    text-align: center;
-    margin: 20px;
-}
 .table-data{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px;
+    padding: 15px;
 }
+
+
+
+.container-form {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+
+}
+
+.header {
+    display: flex;
+    padding: 10px;
+    background-color: black;
+    border-bottom: teal solid 3px;
+    height: 22vh;
+}
+
+.header h2 {
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    margin-left: 10px;
+}
+
+.searchproduct {
+    margin-top: 15px;
+    margin-left: 440px;
+    margin-right: 10px;
+    width: 70%;
+}
+
+.searchproduct input[type='search'] {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 98%;
+    margin: 10px;
+}
+
+th,
+td {
+    border: solid 1px black;
+    padding: 10px;
+}
+
+thead {
+    background-color:rgb(71, 70, 70);
+    color: white;
+}
+
+
+
+/* _________________StocksProduct___________ */
+.StocksProduct {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.displayform {
+    background-color: rgb(240, 236, 236);
+    width: 20%;
+    text-align: center;
+    margin-top: -9%;
+    margin-bottom: 8%;
+    padding: 8px;
+    border-radius: 10px;
+    color: black;
+    border: 3px solid  rgb(22, 113, 107);
+    box-shadow: -3px 5px 87px -33px rgba(0, 0, 0, 0.83);
+    -webkit-box-shadow: -3px 5px 87px -33px rgba(0, 0, 0, 0.83);
+    -moz-box-shadow: -3px 5px 87px -33px rgba(0, 0, 0, 0.83);
+}
+.displayform:hover {
+    background-color: rgb(22, 113, 107);
+    color: white;
+    border: 3px solid #dcdcdc;
+    cursor: pointer;
+}
+.btn{
+    display: flex;
+    flex-direction: row;
+    margin-top: -25px;
+    justify-content: space-between;
+}
+ .content h3{
+    margin-left: 10px;
+    font-size: 20px;
+} 
